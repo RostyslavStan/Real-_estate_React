@@ -1,0 +1,136 @@
+.property-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .property-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  .property-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .no-images {
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .property-details {
+    margin-top: 15px;
+  }
+  
+  .property-details h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  
+  .property-details p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .property-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #ddd;
+  }
+  
+  .save-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .save-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #e53935;
+  }
+  
+  .edit-btn {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #1976D2;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  input[type="file"] {
+    margin-top: 10px;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .property-details input:focus,
+  .property-details textarea:focus {
+    border-color: #2196F3;
+    outline: none;
+  }
+  
+  .save-btn,
+  .cancel-btn {
+    margin-top: 10px;
+  }
+  

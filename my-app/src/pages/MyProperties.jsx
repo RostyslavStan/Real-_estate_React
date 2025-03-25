@@ -30,8 +30,8 @@ export default function MyProperties() {
     }
   }
 
-  async function updateProperty(property) {
-    const response = await axios.put('https://localhost:7168/Properties', property, {
+  async function updateProperty(id, property) {
+    const response = await axios.put(`https://localhost:7168/Properties/${id}`, property, {
       headers: {Authorization: `Bearer ${token}`}
         });
         if(response.status === 200)

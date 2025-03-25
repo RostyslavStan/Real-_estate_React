@@ -8,6 +8,7 @@ export default function Header() {
         <Link to="/addproperty" className="nav-link">Add Property</Link>
         <Link to="/myproperties" className="nav-link">My Property</Link>
         <Link to="/login" className="nav-link">Login</Link>
+        <Link to="/register" className="nav-link">Register</Link>
       </nav>
     </header>
   );

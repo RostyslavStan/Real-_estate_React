@@ -43,7 +43,6 @@ export default function AddProperty() {
       }
     }
   
-    try {
       const response = await axios.post(
         'https://localhost:7168/Properties/Create',
         formData,
@@ -63,11 +62,6 @@ export default function AddProperty() {
         rooms: '',
         images: [],
       });
-  
-      alert('Created successfully');
-    } catch (error) {
-      console.error('Error creating property:', error);
-    }
   }
   
 

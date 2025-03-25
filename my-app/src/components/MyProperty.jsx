@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/MyProperty.css';
 
 export default function MyProperty({ property, updateProperty, deleteProperty }) {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedProperty, setUpdatedProperty] = useState(property);
+  const [newImages, setNewImages] = useState([]); // Додані фото
+
+  useEffect(() => {
+    setUpdatedProperty(property); // Оновлюємо стан при зміні property
+  }, [property]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,20 +18,38 @@ export default function MyProperty({ property, updateProperty, deleteProperty })
     }));
   };
 
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setNewImages(files);
+  };
+
   const handleSave = () => {
-    updateProperty(updatedProperty);
+    const formData = new FormData();
+    formData.append("title", updatedProperty.title);
+    formData.append("description", updatedProperty.description);
+    formData.append("city", updatedProperty.city);
+    formData.append("rooms", updatedProperty.rooms);
+    formData.append("price", updatedProperty.price);
+
+    // Додаємо фото
+    newImages.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    updateProperty(property.id, formData);
     setIsEditing(false);
   };
 
   return (
     <div className="property-card">
       <div className="property-image">
-        {property.images && property.images.length > 0 ? (
-          <img src={`https://localhost:7168/${property.images[0]}`} alt="Property" />
+        {updatedProperty.images && updatedProperty.images.length > 0 ? (
+          <img src={`https://localhost:7168/${updatedProperty.images[0]}`} alt="Property" />
         ) : (
           <p className="no-images">Зображення відсутнє</p>
         )}
       </div>
+
       <div className="property-details">
         {isEditing ? (
           <>
@@ -43,8 +66,8 @@ export default function MyProperty({ property, updateProperty, deleteProperty })
             />
             <input
               type="text"
-              name="City"
-              value={updatedProperty.City}
+              name="city"
+              value={updatedProperty.city}
               onChange={handleChange}
             />
             <input
@@ -59,16 +82,20 @@ export default function MyProperty({ property, updateProperty, deleteProperty })
               value={updatedProperty.price}
               onChange={handleChange}
             />
+
+            {/* Поле для вибору фото */}
+            <input type="file" multiple onChange={handleImageChange} />
+
             <button className="btn save-btn" onClick={handleSave}>Save</button>
             <button className="btn cancel-btn" onClick={() => setIsEditing(false)}>Cancel</button>
           </>
         ) : (
           <>
-            <h2>{property.title}</h2>
-            <p>{property.description}</p>
-            <p>{property.City}</p>
-            <p>{property.rooms} rooms</p>
-            <p>{property.price}$</p>
+            <h2>{updatedProperty.title}</h2>
+            <p>{updatedProperty.description}</p>
+            <p>{updatedProperty.city}</p>
+            <p>{updatedProperty.rooms} rooms</p>
+            <p>{updatedProperty.price}$</p>
             <button className="btn edit-btn" onClick={() => setIsEditing(true)}>
               Edit
             </button>
